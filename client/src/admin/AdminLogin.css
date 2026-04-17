@@ -1,0 +1,197 @@
+.admin-login-page {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.admin-login-left {
+  background: linear-gradient(135deg, #0e0c08 0%, #1a1208 50%, #2d2010 100%);
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+.admin-login-left::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 30% 40%, rgba(201,169,110,0.08) 0%, transparent 60%);
+}
+
+.admin-brand {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+  z-index: 1;
+}
+.admin-logo-icon {
+  width: 48px;
+  height: 48px;
+  background: var(--gold, #c9a96e);
+  color: #0e0c08;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+}
+.admin-brand h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  color: #faf8f4;
+  font-weight: 400;
+  margin: 0;
+}
+.admin-brand p {
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #c9a96e;
+  margin: 0;
+}
+
+.admin-login-tagline {
+  position: relative;
+  z-index: 1;
+}
+.admin-login-tagline h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.5rem;
+  color: #faf8f4;
+  font-weight: 300;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+.admin-login-tagline > p {
+  color: rgba(245,240,232,0.6);
+  font-size: 0.95rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+.admin-login-tagline ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.admin-login-tagline ul li {
+  font-size: 0.85rem;
+  color: rgba(245,240,232,0.7);
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(201,169,110,0.1);
+}
+
+.admin-login-right {
+  background: #f5f0e8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.admin-login-card {
+  background: #faf8f4;
+  border: 1px solid #e0d4c0;
+  padding: 3rem;
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
+}
+.admin-lock-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+.admin-login-card h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  color: #1a1208;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+}
+.admin-login-card > p {
+  font-size: 0.875rem;
+  color: #8c7860;
+  margin-bottom: 2rem;
+}
+
+.admin-login-form { text-align: left; }
+.admin-form-group { margin-bottom: 1.25rem; }
+.admin-form-group label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #8c7860;
+  margin-bottom: 0.4rem;
+}
+.admin-form-group input {
+  width: 100%;
+  border: 1px solid #e0d4c0;
+  padding: 0.85rem 1rem;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.9rem;
+  background: #f5f0e8;
+  color: #1a1208;
+  outline: none;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+.admin-form-group input:focus { border-color: #c9a96e; background: #fff; }
+
+.admin-login-btn {
+  width: 100%;
+  background: #1a1208;
+  color: #faf8f4;
+  border: none;
+  padding: 1rem;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 0.5rem;
+}
+.admin-login-btn:hover:not(:disabled) { background: #c9a96e; color: #1a1208; }
+.admin-login-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+.btn-loading { display: flex; align-items: center; justify-content: center; gap: 0.75rem; }
+.btn-spinner {
+  width: 16px; height: 16px;
+  border: 2px solid rgba(245,240,232,0.3);
+  border-top-color: #faf8f4;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.admin-hint {
+  margin-top: 2rem;
+  padding: 1rem;
+  background: #f0ede6;
+  border: 1px dashed #c9a96e;
+  text-align: left;
+}
+.admin-hint p { font-size: 0.75rem; color: #8c7860; margin-bottom: 0.4rem; }
+.admin-hint code { font-size: 0.8rem; color: #1a1208; font-weight: 500; }
+
+.back-to-site {
+  display: block;
+  margin-top: 1.5rem;
+  font-size: 0.8rem;
+  color: #8c7860;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.back-to-site:hover { color: #c9a96e; }
+
+@media(max-width: 768px) {
+  .admin-login-page { grid-template-columns: 1fr; }
+  .admin-login-left { display: none; }
+}

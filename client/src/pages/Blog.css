@@ -1,0 +1,23 @@
+.blog-page { padding-top: 80px; padding-bottom: 5rem; }
+.blog-search { display: flex; align-items: center; gap: 0.75rem; background: rgba(255,255,255,0.1); border: 1px solid rgba(245,240,232,0.25); padding: 0.75rem 1.25rem; max-width: 400px; margin-top: 1.5rem; }
+.blog-search input { background: transparent; border: none; color: var(--cream); font-family: var(--font-body); font-size: 0.9rem; outline: none; flex: 1; }
+.blog-search input::placeholder { color: rgba(245,240,232,0.5); }
+.blog-search svg { color: rgba(245,240,232,0.5); flex-shrink: 0; }
+.blog-container { margin-top: 3rem; }
+.blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+.blog-card { background: var(--warm-white); border: 1px solid var(--border); overflow: hidden; transition: var(--transition); }
+.blog-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+.blog-card.featured { grid-column: span 3; display: grid; grid-template-columns: 1.5fr 1fr; }
+.blog-card-image { display: block; position: relative; overflow: hidden; aspect-ratio: 16/10; }
+.blog-card.featured .blog-card-image { aspect-ratio: auto; }
+.blog-card-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+.blog-card:hover .blog-card-image img { transform: scale(1.05); }
+.blog-tag-badge { position: absolute; top: 1rem; left: 1rem; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; background: var(--gold); color: var(--charcoal); padding: 0.25rem 0.6rem; font-weight: 500; }
+.blog-card-body { padding: 1.5rem; display: flex; flex-direction: column; justify-content: center; }
+.blog-card-meta { display: flex; gap: 1rem; font-size: 0.75rem; color: var(--text-light); margin-bottom: 0.75rem; }
+.blog-card h2 { font-family: var(--font-display); font-size: 1.25rem; font-weight: 400; margin-bottom: 0.75rem; line-height: 1.4; }
+.blog-card.featured h2 { font-size: 1.75rem; }
+.blog-card h2 a:hover, .blog-card h2 a:hover { color: var(--gold-dark); }
+.blog-card p { font-size: 0.875rem; color: var(--text-light); line-height: 1.8; margin-bottom: 1.25rem; }
+@media(max-width:1024px){ .blog-card.featured{grid-column:auto;display:block} }
+@media(max-width:768px){ .blog-grid{grid-template-columns:1fr} }

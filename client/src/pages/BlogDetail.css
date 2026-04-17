@@ -1,0 +1,23 @@
+.blog-detail-page { padding-top: 80px; padding-bottom: 5rem; }
+.blog-hero { min-height: 55vh; background-size: cover; background-position: center; display: flex; align-items: flex-end; position: relative; }
+.blog-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(14,12,8,0.9) 0%, rgba(14,12,8,0.3) 60%); }
+.blog-hero-content { position: relative; z-index: 1; padding-bottom: 4rem; max-width: 800px; }
+.blog-tags { display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap; }
+.blog-tag { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; background: var(--gold); color: var(--charcoal); padding: 0.25rem 0.6rem; font-weight: 500; }
+.blog-hero-content h1 { font-size: clamp(2rem,5vw,3.5rem); color: var(--cream); font-weight: 300; margin-bottom: 1rem; }
+.blog-meta { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+.blog-meta span { font-size: 0.8rem; color: rgba(245,240,232,0.65); letter-spacing: 0.05em; }
+.blog-layout { display: grid; grid-template-columns: 1fr 320px; gap: 4rem; margin-top: 4rem; align-items: start; }
+.blog-article { max-width: none; }
+.blog-content h2 { font-family: var(--font-display); font-size: 1.75rem; margin: 2rem 0 1rem; }
+.blog-content p { font-size: 0.95rem; line-height: 2; color: var(--text-body); margin-bottom: 1.25rem; }
+.blog-content img { width: 100%; margin: 1.5rem 0; }
+.blog-sidebar { position: sticky; top: 100px; }
+.sidebar-widget { background: var(--cream); border: 1px solid var(--border); padding: 1.5rem; margin-bottom: 1.5rem; }
+.sidebar-widget h3 { font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 1rem; }
+.author-card { display: flex; align-items: center; gap: 1rem; }
+.author-av { width: 44px; height: 44px; border-radius: 50%; background: var(--charcoal); color: var(--cream); display: flex; align-items: center; justify-content: center; font-weight: 500; flex-shrink: 0; }
+.author-card strong { display: block; font-size: 0.95rem; margin-bottom: 0.2rem; }
+.author-card p { font-size: 0.8rem; color: var(--text-light); }
+.sidebar-widget p { font-size: 0.85rem; color: var(--text-body); line-height: 1.7; }
+@media(max-width:1024px){ .blog-layout{grid-template-columns:1fr} .blog-sidebar{position:static} }
