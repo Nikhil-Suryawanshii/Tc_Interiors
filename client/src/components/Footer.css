@@ -67,3 +67,4 @@
   .footer-grid { grid-template-columns: 1fr; }
   .footer-bottom .container { flex-direction: column; text-align: center; }
 }
+.footer-logo-img { height: 48px; width: auto; object-fit: contain; margin-bottom: 1.25rem; filter: brightness(0) invert(1); }

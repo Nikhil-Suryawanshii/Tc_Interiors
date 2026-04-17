@@ -12,3 +12,17 @@
 .service-features li { font-size: 0.875rem; color: var(--text-body); padding-left: 1.5rem; position: relative; }
 .service-features li::before { content: '—'; position: absolute; left: 0; color: var(--gold); }
 @media(max-width:768px){ .service-item, .service-item.reverse { grid-template-columns:1fr; gap:2rem; } .service-item.reverse .service-visual,.service-item.reverse .service-content{order:unset} }
+.service-img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 4/3; }
+.service-footer { display: flex; align-items: center; gap: 1.5rem; margin-top: 1.5rem; flex-wrap: wrap; }
+.service-duration { font-size: 0.8rem; color: var(--gold); letter-spacing: 0.1em; }
+.service-pricing { display: flex; gap: 1rem; flex-wrap: wrap; margin: 1.25rem 0; }
+.price-tier { background: var(--cream); border: 1px solid var(--border); padding: 1rem; min-width: 140px; }
+.price-tier strong { display: block; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--charcoal); margin-bottom: 0.3rem; }
+.tier-price { display: block; font-family: var(--font-display); font-size: 1.2rem; color: var(--gold-dark); margin-bottom: 0.25rem; }
+.price-tier p { font-size: 0.78rem; color: var(--text-light); }
+.service-process { margin: 1.25rem 0; }
+.service-process h4 { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--charcoal); margin-bottom: 0.75rem; }
+.process-step { display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 0.75rem; }
+.step-num { width: 28px; height: 28px; background: var(--gold); color: var(--charcoal); display: flex; align-items: center; justify-content: center; font-size: 0.78rem; font-weight: 600; flex-shrink: 0; }
+.process-step strong { display: block; font-size: 0.85rem; color: var(--charcoal); }
+.process-step p { font-size: 0.82rem; color: var(--text-light); margin: 0.1rem 0 0; }

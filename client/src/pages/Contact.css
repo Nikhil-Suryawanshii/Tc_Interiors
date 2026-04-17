@@ -18,3 +18,7 @@
 .form-group input:focus, .form-group textarea:focus { border-color: var(--gold); }
 @media(max-width:1024px){ .contact-layout{grid-template-columns:1fr} }
 @media(max-width:768px){ .form-grid{grid-template-columns:1fr} }
+.whatsapp-btn { display: inline-flex; align-items: center; gap: 0.6rem; background: #25d366; color: #fff; padding: 0.7rem 1.5rem; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; transition: var(--transition); margin-top: 0.5rem; text-decoration: none; }
+.whatsapp-btn:hover { background: #128c7e; color: #fff; }
+.map-embed { margin-top: 2rem; }
+.map-embed iframe { width: 100%; height: 240px; border: none; }

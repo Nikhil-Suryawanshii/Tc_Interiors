@@ -203,3 +203,4 @@
 @media (max-width: 480px) {
   .navbar-inner { padding: 1rem; }
 }
+.logo-img { height: 40px; width: auto; object-fit: contain; }

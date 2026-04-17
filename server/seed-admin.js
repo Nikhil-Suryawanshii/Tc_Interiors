@@ -3,9 +3,9 @@ const User = require('./models/User');
 require('dotenv').config();
 
 const MONGO_URI =
-  process.env.MONGODB_URI ||
   process.env.MONGO_URI ||
-  'mongodb://127.0.0.1:27017/interior-studio';
+  process.env.MONGODB_URI ||
+  'mongodb://localhost:27017/interior-studio';
 
 mongoose.connect(MONGO_URI).then(async () => {
   console.log('Connected to MongoDB...');

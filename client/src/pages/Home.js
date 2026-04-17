@@ -1,3 +1,4 @@
+import { useSettings } from '../context/SettingsContext';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -41,31 +42,24 @@ const STATIC_BLOG = [
   { slug: 'small-space-luxury', title: 'Luxury in Small Spaces: A Complete Guide', excerpt: "A compact apartment can feel just as grand as a villa.", tag: 'Tips', image: 'https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=600&q=80' },
   { slug: 'material-guide-2025', title: 'The Material Guide: Marble, Cane & Terrazzo', excerpt: 'We break down the hottest materials of the season.', tag: 'Guide', image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80' },
 ];
-const asArray = (value) => (Array.isArray(value) ? value : []);
 
 const Home = () => {
+  const { settings } = useSettings();
+  const hero = settings.hero || {};
   const [featuredProducts, setFeaturedProducts] = useState([]);
   const [projects, setProjects] = useState([]);
   const [services, setServices] = useState([]);
   const [videoOpen, setVideoOpen] = useState(false);
 
   useEffect(() => {
-    getProducts({ featured: true, limit: 4 })
-      .then((r) => setFeaturedProducts(asArray(r?.data?.products)))
-      .catch(() => setFeaturedProducts([]));
-
-    getProjects({ featured: true, limit: 3 })
-      .then((r) => setProjects(asArray(r?.data?.projects)))
-      .catch(() => setProjects([]));
-
-    getServices()
-      .then((r) => setServices(asArray(r?.data).slice(0, 3)))
-      .catch(() => setServices([]));
+    getProducts({ featured: true, limit: 4 }).then(r => setFeaturedProducts(r.data.products)).catch(() => {});
+    getProjects({ featured: true, limit: 3 }).then(r => setProjects(r.data.projects)).catch(() => {});
+    getServices().then(r => setServices(r.data.slice(0, 3))).catch(() => {});
   }, []);
 
-  const displayProducts = asArray(featuredProducts).length ? featuredProducts : STATIC_PRODUCTS;
-  const displayProjects = asArray(projects).length ? projects : STATIC_PROJECTS;
-  const displayServices = asArray(services).length ? services : STATIC_SERVICES;
+  const displayProducts = featuredProducts.length ? featuredProducts : STATIC_PRODUCTS;
+  const displayProjects = projects.length ? projects : STATIC_PROJECTS;
+  const displayServices = services.length ? services : STATIC_SERVICES;
 
   return (
     <div className="home">
@@ -75,8 +69,10 @@ const Home = () => {
         <div className="container hero-content">
           <motion.div initial="hidden" animate="visible" variants={stagger} className="hero-text">
             <motion.span variants={fadeUp} className="hero-label">Premium Interior Design Studio</motion.span>
-            <motion.h1 variants={fadeUp} className="hero-title">Spaces That<br /><em>Speak Your Story</em></motion.h1>
-            <motion.p variants={fadeUp} className="hero-desc">We craft exceptional interiors — from bespoke furniture to complete home transformations. Luxury design, thoughtfully executed across India.</motion.p>
+            <motion.h1 variants={fadeUp} className="hero-title">
+              {hero.title || 'Spaces That'}<br/><em>{hero.titleEm || 'Speak Your Story'}</em>
+            </motion.h1>
+            <motion.p variants={fadeUp} className="hero-desc">{hero.description || 'We craft exceptional interiors — from bespoke furniture to complete home transformations.'}</motion.p>
             <motion.div variants={fadeUp} className="hero-btns">
               <Link to="/projects" className="btn-primary">Explore Work <FiArrowRight /></Link>
               <Link to="/shop" className="btn-hero-outline">Shop Now <FiArrowRight /></Link>

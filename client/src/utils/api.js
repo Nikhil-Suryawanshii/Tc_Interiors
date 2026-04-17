@@ -89,3 +89,8 @@ export const uploadMultiple = (formData) => API.post('/upload/multiple', formDat
 
 // Admin stats
 export const getAdminStats = () => API.get('/admin/stats');
+
+// Settings
+export const getSettings    = ()          => API.get('/settings');
+export const getSettingKey  = (key)       => API.get(`/settings/${key}`);
+export const updateSetting  = (key, data) => API.put(`/settings/${key}`, data);

@@ -250,3 +250,5 @@
   .mobile-menu-btn { display: block; }
   .admin-content { padding: 1rem; }
 }
+.nav-group { margin-bottom: 0.25rem; }
+.nav-group-label { display: block; padding: 0.6rem 1.25rem 0.25rem; font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(201,169,110,0.4); }
