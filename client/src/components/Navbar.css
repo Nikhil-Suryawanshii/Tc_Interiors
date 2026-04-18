@@ -7,7 +7,7 @@
   transition: background 0.4s ease, box-shadow 0.4s ease;
 }
 .navbar.scrolled {
-  background: rgba(250,248,244,0.97);
+  background: var(--nav-scroll-bg);
   backdrop-filter: blur(20px);
   box-shadow: 0 1px 30px rgba(26,18,8,0.08);
 }
@@ -35,7 +35,7 @@
   font-family: var(--font-display);
   font-size: 1.55rem;
   font-weight: 600;
-  color: var(--charcoal);
+  color: var(--nav-text);
   letter-spacing: 0.04em;
 }
 .logo-sub {
@@ -43,7 +43,7 @@
   font-size: 0.58rem;
   letter-spacing: 0.35em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--nav-active);
   margin-top: 2px;
 }
 
@@ -63,7 +63,7 @@
   font-weight: 400;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--medium);
+  color: var(--nav-text);
   transition: var(--transition);
   position: relative;
   white-space: nowrap;
@@ -73,12 +73,12 @@
   position: absolute;
   bottom: 0; left: 0.95rem; right: 0.95rem;
   height: 1px;
-  background: var(--gold);
+  background: var(--nav-active);
   transform: scaleX(0);
   transition: transform 0.28s ease;
 }
 .nav-links a:hover,
-.nav-links a.active   { color: var(--charcoal); }
+.nav-links a.active   { color: var(--nav-active); }
 .nav-links a:hover::after,
 .nav-links a.active::after { transform: scaleX(1); }
 
@@ -93,18 +93,18 @@
   background: none;
   border: none;
   padding: 0.45rem;
-  color: var(--medium);
+  color: var(--nav-text);
   transition: var(--transition);
   display: flex;
   align-items: center;
   position: relative;
 }
-.nav-icon-btn:hover { color: var(--charcoal); }
+.nav-icon-btn:hover { color: var(--nav-active); }
 .cart-badge {
   position: absolute;
   top: 1px; right: 1px;
-  background: var(--gold);
-  color: var(--charcoal);
+  background: var(--nav-active);
+  color: var(--nav-bg);
   font-size: 0.55rem;
   font-weight: 700;
   width: 15px; height: 15px;
@@ -126,7 +126,7 @@
   position: absolute;
   top: calc(100% + 0.75rem);
   right: 0;
-  background: var(--warm-white);
+  background: var(--nav-bg);
   border: 1px solid var(--border);
   min-width: 175px;
   padding: 0.4rem 0;
@@ -176,7 +176,7 @@
   display: none;
   background: none;
   border: none;
-  color: var(--charcoal);
+  color: var(--nav-text);
   padding: 0.4rem;
   cursor: pointer;
   z-index: 1002;
@@ -187,7 +187,7 @@
 .search-bar {
   padding: 0.85rem 2rem;
   border-top: 1px solid var(--border);
-  background: rgba(250,248,244,0.98);
+  background: var(--nav-scroll-bg);
   backdrop-filter: blur(20px);
 }
 .search-bar form {
@@ -232,14 +232,13 @@
   .nav-toggle { display: flex; }
   .nav-cta { display: none; }
 
-  /* Drawer */
   .nav-links {
     position: fixed;
     top: 0;
     left: -100%;
     bottom: 0;
     width: min(300px, 85vw);
-    background: var(--warm-white);
+    background: var(--nav-bg);
     flex-direction: column;
     justify-content: flex-start;
     padding: 5rem 0 2rem;
@@ -258,12 +257,13 @@
     letter-spacing: 0.12em;
     display: flex;
     align-items: center;
+    color: var(--nav-text);
   }
   .nav-links a::after { display: none; }
   .nav-links a.active {
-    color: var(--gold);
+    color: var(--nav-active);
     background: var(--cream);
-    border-left: 3px solid var(--gold);
+    border-left: 3px solid var(--nav-active);
     padding-left: calc(1.75rem - 3px);
   }
 }

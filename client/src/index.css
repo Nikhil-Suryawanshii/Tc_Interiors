@@ -1,5 +1,6 @@
 /* ─── CSS VARIABLES ─── */
 :root {
+  /* Core palette – overridden at runtime by SettingsContext */
   --cream:      #f5f0e8;
   --warm-white: #faf8f4;
   --gold:       #c9a96e;
@@ -17,6 +18,33 @@
   --font-display: 'Cormorant Garamond', Georgia, serif;
   --font-body:    'Jost', sans-serif;
   --transition:   all 0.3s cubic-bezier(0.4,0,0.2,1);
+
+  /* ── Section-specific vars (runtime overridden by theme settings) ── */
+  --nav-bg:          #faf8f4;
+  --nav-text:        #1a1208;
+  --nav-active:      #c9a96e;
+  --nav-scroll-bg:   #faf8f4;
+
+  --sidebar-bg:      #0e0c08;
+  --sidebar-text:    #faf8f4;
+  --sidebar-active:  #c9a96e;
+  --sidebar-border:  rgba(201,169,110,0.12);
+
+  --hero-bg:         #1a1208;
+  --hero-text:       #f5f0e8;
+  --hero-accent:     #c9a96e;
+
+  --btn-primary-bg:  #1a1208;
+  --btn-primary-text:#f5f0e8;
+  --btn-gold-bg:     #c9a96e;
+  --btn-gold-text:   #1a1208;
+
+  --footer-bg:       #1a1208;
+  --footer-text:     #f5f0e8;
+  --footer-muted:    rgba(245,240,232,0.55);
+
+  --page-hero-bg:    #1a1208;
+  --page-hero-text:  #f5f0e8;
 }
 
 /* ─── RESET ─── */
@@ -44,17 +72,13 @@ button { cursor: pointer; font-family: var(--font-body); }
 input, textarea, select { font-family: var(--font-body); }
 
 /* ─── LAYOUT ─── */
-.container {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 2rem;
-}
+.container { max-width: 1400px; margin: 0 auto; padding: 0 2rem; }
 
 /* ─── BUTTONS ─── */
 .btn-primary {
   display: inline-flex; align-items: center; gap: 0.5rem;
-  background: var(--charcoal); color: var(--cream);
-  border: 1px solid var(--charcoal);
+  background: var(--btn-primary-bg); color: var(--btn-primary-text);
+  border: 1px solid var(--btn-primary-bg);
   padding: 0.82rem 2.2rem;
   font-family: var(--font-body); font-size: 0.78rem; font-weight: 500;
   letter-spacing: 0.15em; text-transform: uppercase;
@@ -75,8 +99,8 @@ input, textarea, select { font-family: var(--font-body); }
 
 .btn-gold {
   display: inline-flex; align-items: center; gap: 0.5rem;
-  background: var(--gold); color: var(--charcoal);
-  border: 1px solid var(--gold);
+  background: var(--btn-gold-bg); color: var(--btn-gold-text);
+  border: 1px solid var(--btn-gold-bg);
   padding: 0.82rem 2.2rem;
   font-family: var(--font-body); font-size: 0.78rem; font-weight: 500;
   letter-spacing: 0.15em; text-transform: uppercase;
@@ -98,71 +122,41 @@ input, textarea, select { font-family: var(--font-body); }
 /* ─── SECTION LABELS ─── */
 .section-label {
   font-family: var(--font-body);
-  font-size: 0.68rem;
-  font-weight: 500;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 1rem;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
+  font-size: 0.68rem; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1rem;
+  display: flex; align-items: center; gap: 0.75rem;
 }
 .section-label::before {
-  content: '';
-  display: block;
-  width: 1.75rem;
-  height: 1px;
-  background: var(--gold);
-  flex-shrink: 0;
+  content: ''; display: block; width: 1.75rem; height: 1px;
+  background: var(--gold); flex-shrink: 0;
 }
-.section-title {
-  font-size: clamp(1.8rem, 4vw, 3.2rem);
-  color: var(--charcoal);
-  margin-bottom: 1.25rem;
-}
+.section-title { font-size: clamp(1.8rem, 4vw, 3.2rem); color: var(--charcoal); margin-bottom: 1.25rem; }
 .section-head { margin-bottom: 3rem; }
 .section-head-row {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  margin-bottom: 2.5rem;
-  flex-wrap: wrap;
-  gap: 1rem;
+  display: flex; align-items: flex-end; justify-content: space-between;
+  margin-bottom: 2.5rem; flex-wrap: wrap; gap: 1rem;
 }
 .section-desc { max-width: 520px; color: var(--text-light); font-size: 0.92rem; line-height: 1.85; }
 .section-cta { text-align: center; margin-top: 2.5rem; }
 
-/* ─── PAGE HERO (shared) ─── */
+/* ─── PAGE HERO (shared inner pages) ─── */
 .page-hero {
-  background: var(--charcoal);
+  background: var(--page-hero-bg);
   padding: 5rem 0 3rem;
   margin-bottom: 3rem;
 }
 .page-hero h1 {
   font-family: var(--font-display);
   font-size: clamp(2.2rem, 5vw, 3.75rem);
-  color: var(--cream);
-  margin: 0.5rem 0;
-  font-weight: 300;
+  color: var(--page-hero-text);
+  margin: 0.5rem 0; font-weight: 300;
 }
 .page-hero p { color: rgba(245,240,232,0.6); font-size: 0.92rem; }
 
 /* ─── SPINNER ─── */
-.spinner {
-  width: 38px; height: 38px;
-  border: 2px solid var(--border);
-  border-top-color: var(--gold);
-  border-radius: 50%;
-  animation: spin 0.75s linear infinite;
-}
+.spinner { width: 38px; height: 38px; border: 2px solid var(--border); border-top-color: var(--gold); border-radius: 50%; animation: spin 0.75s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
-.loading-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 35vh;
-}
+.loading-center { display: flex; justify-content: center; align-items: center; min-height: 35vh; }
 
 /* ─── SCROLLBAR ─── */
 ::-webkit-scrollbar { width: 5px; }
@@ -175,9 +169,7 @@ input, textarea, select { font-family: var(--font-body); }
 .grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 2rem; }
 
 /* ─── RESPONSIVE ─── */
-@media (max-width: 1024px) {
-  .grid-4 { grid-template-columns: repeat(2,1fr); }
-}
+@media (max-width: 1024px) { .grid-4 { grid-template-columns: repeat(2,1fr); } }
 @media (max-width: 768px) {
   .container { padding: 0 1rem; }
   .grid-2, .grid-3 { grid-template-columns: 1fr; }
@@ -191,24 +183,15 @@ input, textarea, select { font-family: var(--font-body); }
   .page-hero { padding: 3.5rem 0 2rem; }
 }
 
-/* ─── CLOUDINARY UPLOAD BUTTON (shared across all pages) ─── */
+/* ─── CLOUDINARY UPLOAD BUTTON ─── */
 .cloudinary-upload-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
+  display: inline-flex; align-items: center; gap: 0.45rem;
   padding: 0.6rem 1.2rem;
-  background: #1a1208;
-  color: #faf8f4;
+  background: var(--btn-primary-bg); color: var(--btn-primary-text);
   border: none;
-  font-family: var(--font-body);
-  font-size: 0.76rem;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.2s;
-  margin-top: 0.35rem;
+  font-family: var(--font-body); font-size: 0.76rem; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  cursor: pointer; transition: all 0.2s; margin-top: 0.35rem;
 }
-.cloudinary-upload-btn:hover { background: #c9a96e; color: #1a1208; }
-
+.cloudinary-upload-btn:hover { background: var(--gold); color: var(--charcoal); }
 .spin-icon { animation: spin 0.8s linear infinite; }

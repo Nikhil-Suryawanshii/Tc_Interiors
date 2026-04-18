@@ -1,6 +1,6 @@
 /* HERO */
-.hero { position:relative; min-height:100vh; background-size:cover; background-position:center; display:flex; align-items:center; }
-.hero-overlay { position:absolute; inset:0; background:linear-gradient(135deg,rgba(14,12,8,0.78) 0%,rgba(14,12,8,0.38) 100%); }
+.hero { position:relative; min-height:100vh; background-color:var(--hero-bg); background-size:cover; background-position:center; display:flex; align-items:center; }
+.hero-overlay { position:absolute; inset:0; background:linear-gradient(135deg,rgba(0,0,0,0.78) 0%,rgba(0,0,0,0.38) 100%); }
 .hero-content { position:relative; z-index:1; display:flex; flex-direction:column; justify-content:center; min-height:100vh; padding-top:80px; }
 .hero-label { font-size:0.68rem; font-weight:500; letter-spacing:0.35em; text-transform:uppercase; color:var(--gold-light); margin-bottom:1.25rem; display:block; }
 .hero-title { font-size:clamp(2.6rem,7vw,5.5rem); color:var(--cream); line-height:1.05; margin-bottom:1.4rem; font-weight:300; }
