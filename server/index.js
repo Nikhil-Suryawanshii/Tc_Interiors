@@ -29,6 +29,11 @@ app.get('/', (req, res) => res.json({ message: 'Interior Studio API ✓' }));
 app.use((err, req, res, next) => res.status(500).json({ message: err.message }));
 
 const PORT = process.env.PORT || 5000;
-mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/interior-studio')
+const mongoUri =
+  process.env.MONGODB_URI ||
+  process.env.MONGO_URI ||
+  'mongodb://localhost:27017/interior-studio';
+
+mongoose.connect(mongoUri)
   .then(() => { console.log('✅ MongoDB connected'); app.listen(PORT, () => console.log(`✅ Server: http://localhost:${PORT}`)); })
   .catch(err => { console.error('❌', err.message); process.exit(1); });

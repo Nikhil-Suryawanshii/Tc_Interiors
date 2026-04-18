@@ -1,8 +1,17 @@
 import axios from 'axios';
 
-// Use REACT_APP_API_URL if set, otherwise use proxy (empty string = relative URL)
+const rawApiBaseUrl =
+  process.env.REACT_APP_API_URL ||
+  process.env.VITE_API_URL ||
+  '/api';
+
+const apiBaseUrl = rawApiBaseUrl.replace(/\/api\/v\d+$/, '/api');
+
+export const ASSET_BASE_URL = apiBaseUrl.replace(/\/api$/, '');
+
+// Use explicit API URL if set, otherwise use proxy (empty string = relative URL)
 const API = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || '/api',
+  baseURL: apiBaseUrl,
 });
 
 API.interceptors.request.use(config => {
