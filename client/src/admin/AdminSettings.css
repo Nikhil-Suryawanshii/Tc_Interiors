@@ -46,3 +46,17 @@
 .settings-save-bar { padding: 1.25rem 2rem; border-top: 1px solid #e0d4c0; background: #f5f0e8; display: flex; align-items: center; gap: 1.5rem; }
 .save-hint { font-size: 0.78rem; color: #8c7860; }
 @media(max-width:768px){ .settings-layout{grid-template-columns:1fr} .settings-tabs{position:static;display:flex;overflow-x:auto} .settings-tab{white-space:nowrap} .color-grid,.admin-form-row{grid-template-columns:1fr} }
+@media(max-width:900px){
+  .settings-layout{grid-template-columns:1fr}
+  .settings-tabs{display:flex;overflow-x:auto;position:static;padding:0;border-bottom:1px solid #e0d4c0}
+  .settings-tab{white-space:nowrap;border-left:none;border-bottom:3px solid transparent;padding:0.75rem 1.1rem;flex-shrink:0}
+  .settings-tab.active{border-bottom-color:#c9a96e;border-left:none;background:#f5f0e8}
+  .color-grid{grid-template-columns:1fr 1fr}
+  .admin-form-row{grid-template-columns:1fr}
+  .settings-section{padding:1.5rem}
+}
+@media(max-width:480px){
+  .color-grid{grid-template-columns:1fr}
+  .logo-upload-area{flex-direction:column;align-items:flex-start}
+  .settings-save-bar{flex-direction:column;gap:0.5rem}
+}

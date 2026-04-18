@@ -1,105 +1,133 @@
-# Luxe Interior Studio — Full MERN Stack Website
+# Luxe Interior Studio — Complete MERN Stack Website
 
 ## 🚀 Quick Start
 
-### 1. Backend Setup
 ```bash
+# 1. Backend
 cd server
-cp .env.example .env        # Edit: add your MONGO_URI
+cp .env.example .env      # set MONGO_URI + JWT_SECRET
 npm install
-npm run seed                 # Creates admin user
-npm run dev                  # Starts on http://localhost:5000
-```
+npm run seed              # creates admin@luxe.in / Admin@1234
+npm run dev               # → http://localhost:5000
 
-### 2. Frontend Setup
-```bash
+# 2. Frontend (new terminal)
 cd client
 npm install
-npm start                    # Starts on http://localhost:3000
+npm start                 # → http://localhost:3000
 ```
 
 ---
 
 ## 🔐 Login Credentials
 
-### Admin Panel
-- **URL:** `http://localhost:3000/admin`
-- **Email:** `admin@luxe.in`
-- **Password:** `Admin@1234`
-
-> Run `npm run seed` in the server folder first to create the admin user.
-
-### Register as Customer
-- Go to `http://localhost:3000/register`
-- Fill name, email, password — done!
+| Role  | URL | Email | Password |
+|-------|-----|-------|----------|
+| Admin | `/admin` | `admin@luxe.in` | `Admin@1234` |
+| User  | `/login` | register at `/register` | — |
 
 ---
 
-## 🗂 Key URLs
+## 🗺 Admin Panel URLs
 
-| URL | Description |
-|-----|-------------|
-| `http://localhost:3000` | Main website |
-| `http://localhost:3000/admin` | Admin login |
-| `http://localhost:3000/admin/dashboard` | Admin dashboard |
-| `http://localhost:3000/admin/products` | Manage products |
-| `http://localhost:3000/admin/orders` | Manage orders |
-| `http://localhost:3000/admin/consultations` | View consultations |
-| `http://localhost:3000/admin/blog` | Manage blog |
-| `http://localhost:5000` | API server |
-
----
-
-## 🛠 Environment Variables
-
-### `server/.env`
-```env
-PORT=5000
-MONGO_URI=mongodb://localhost:27017/interior-studio
-JWT_SECRET=change_this_to_something_very_secret_123
-CLIENT_URL=http://localhost:3000
-```
-
-### `client/.env` (optional — only needed if not using proxy)
-```env
-REACT_APP_API_URL=http://localhost:5000/api
-```
+| Page | URL |
+|------|-----|
+| Admin Login | `/admin` |
+| Dashboard | `/admin/dashboard` |
+| **Site Settings** | `/admin/settings` |
+| Products | `/admin/products` |
+| Categories | `/admin/categories` |
+| **Services** | `/admin/services` |
+| Orders | `/admin/orders` |
+| Projects | `/admin/projects` |
+| Blog | `/admin/blog` |
+| Customers | `/admin/users` |
+| Consultations | `/admin/consultations` |
+| Reviews | `/admin/reviews` |
 
 ---
 
-## ✅ Bug Fixes in This Version
+## ⚙️ Site Settings (Admin → Settings)
 
-1. **Register/Login fixed** — AuthContext now shows a loading spinner while checking token, prevents navigation errors
-2. **CORS fixed** — server now accepts all origins in development
-3. **API proxy fixed** — client uses `/api` relative URL through CRA proxy, no hardcoded localhost
-4. **Admin routes fully wired** — `/admin/*` uses separate layout, no navbar/footer
-5. **Admin guard** — non-admin users are redirected away from admin routes
+All managed from Admin → Site Settings:
+
+| Tab | Controls |
+|-----|----------|
+| 🏷️ Logo & Branding | Upload logo image OR set text logo, sub-text, tagline |
+| 🎨 Theme & Colors | Primary/dark/light/accent color pickers + font names |
+| 📍 Contact Info | Address, 2 phones, 2 emails, hours, WhatsApp, Google Maps embed |
+| 🔗 Social Media | Instagram, Facebook, LinkedIn, YouTube, Twitter, Pinterest |
+| 📄 Footer | About text, copyright line, newsletter toggle |
+| 🖼️ Hero Section | Title, description, background image, CTA buttons |
+| 👥 About Page | Hero image, intro, mission, stats (repeatable), team (repeatable + photo upload) |
+| 🔍 SEO | Meta title, description, keywords, OG image |
+
+**All changes apply immediately to the live site.**
 
 ---
 
-## 🎛 Admin Panel Features
+## 🛠 Services CRUD (Admin → Services)
 
-- **Dashboard** — Revenue, orders, products, users, recent activity
-- **Products** — Full CRUD with image upload, categories, pricing, stock
-- **Categories** — Create/edit/delete product categories  
-- **Orders** — View all orders, update status (Placed→Confirmed→Shipped→Delivered)
-- **Projects** — View portfolio, delete entries
-- **Blog** — Create/edit/publish blog posts with HTML content
-- **Customers** — View all users, toggle admin role
-- **Consultations** — View booking requests, update status
-- **Reviews** — Approve/delete product reviews
+- Add/edit/delete services with name, icon, short & full description
+- Upload service image
+- Add features (one per line)
+- Add process steps (step number + title + description)
+- Add pricing tiers (label + price + description)
+- Set sort order & homepage visibility
+
+---
+
+## 📋 Contact Page
+
+Contact page automatically displays:
+- Address, phone, email, hours — from Settings → Contact Info
+- WhatsApp chat button — if WhatsApp number is set
+- Google Maps iframe — if map URL is set
+- Consultation booking form — saves to DB, visible in Admin → Consultations
+
+---
+
+## 🖼️ Dynamic Navbar & Footer
+
+Both Navbar and Footer pull all content from Settings:
+- Logo (image or text)
+- Contact info in footer
+- Social media icons in footer
+- Copyright text
 
 ---
 
 ## 📦 Tech Stack
 
-| | |
-|---|---|
-| Frontend | React 18, React Router 6, Framer Motion, React Icons |
+| Layer | Tech |
+|-------|------|
+| Frontend | React 18, React Router 6, Framer Motion |
+| State | Context API: Auth + Cart + **Settings** |
 | Styling | Pure CSS + CSS Variables |
-| State | Context API (Auth + Cart) |
 | Backend | Node.js + Express |
 | Database | MongoDB + Mongoose |
-| Auth | JWT (30 day tokens) |
-| File Upload | Multer (images, videos, GIFs up to 100MB) |
+| Auth | JWT (30d) |
+| Uploads | Multer — images, videos, GIFs (100MB) |
 | Notifications | React Hot Toast |
+
+---
+
+## 🗄️ Models
+
+User, Product, Category, Project, Service, Blog, Order, Review, Consultation, **Settings**
+
+## 📡 API Routes
+
+```
+/api/auth         — register, login, me
+/api/products     — CRUD + search/filter/sort/paginate
+/api/categories   — CRUD
+/api/services     — CRUD
+/api/projects     — CRUD + video/GIF support
+/api/blog         — CRUD + publish
+/api/orders       — create, my orders, admin all, status update
+/api/reviews      — create, approve, delete
+/api/consultations — create, admin list+update
+/api/upload       — image, video, multiple (multer)
+/api/admin        — stats, users list, role toggle
+/api/settings     — GET all, GET by key, PUT by key (admin)
+```

@@ -1,13 +1,13 @@
+/* ─── BASE ─── */
 .navbar {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 1000;
   background: transparent;
-  transition: all 0.4s ease;
-  padding: 0;
+  transition: background 0.4s ease, box-shadow 0.4s ease;
 }
 .navbar.scrolled {
-  background: rgba(250, 248, 244, 0.97);
+  background: rgba(250,248,244,0.97);
   backdrop-filter: blur(20px);
   box-shadow: 0 1px 30px rgba(26,18,8,0.08);
 }
@@ -15,192 +15,262 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.4rem 2rem;
+  padding: 1.2rem 2rem;
   max-width: 1400px;
   margin: 0 auto;
-  gap: 2rem;
+  gap: 1.5rem;
 }
+
+/* ─── LOGO ─── */
 .navbar-logo {
   display: flex;
   flex-direction: column;
   line-height: 1;
   text-decoration: none;
   flex-shrink: 0;
+  z-index: 1002;
 }
+.logo-img { height: 38px; width: auto; object-fit: contain; }
 .logo-main {
   font-family: var(--font-display);
-  font-size: 1.6rem;
+  font-size: 1.55rem;
   font-weight: 600;
   color: var(--charcoal);
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
 }
 .logo-sub {
   font-family: var(--font-body);
-  font-size: 0.6rem;
+  font-size: 0.58rem;
   letter-spacing: 0.35em;
   text-transform: uppercase;
   color: var(--gold);
   margin-top: 2px;
 }
+
+/* ─── NAV LINKS (desktop) ─── */
 .nav-links {
   display: flex;
   list-style: none;
   gap: 0;
   margin: 0; padding: 0;
+  flex: 1;
+  justify-content: center;
 }
 .nav-links a {
   display: block;
-  padding: 0.5rem 1.1rem;
-  font-size: 0.75rem;
+  padding: 0.45rem 0.95rem;
+  font-size: 0.73rem;
   font-weight: 400;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--medium);
   transition: var(--transition);
   position: relative;
+  white-space: nowrap;
 }
 .nav-links a::after {
   content: '';
   position: absolute;
-  bottom: 0; left: 1.1rem; right: 1.1rem;
+  bottom: 0; left: 0.95rem; right: 0.95rem;
   height: 1px;
   background: var(--gold);
   transform: scaleX(0);
-  transition: transform 0.3s ease;
+  transition: transform 0.28s ease;
 }
-.nav-links a:hover, .nav-links a.active {
-  color: var(--charcoal);
-}
-.nav-links a:hover::after, .nav-links a.active::after {
-  transform: scaleX(1);
-}
+.nav-links a:hover,
+.nav-links a.active   { color: var(--charcoal); }
+.nav-links a:hover::after,
+.nav-links a.active::after { transform: scaleX(1); }
+
+/* ─── ACTIONS ─── */
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.35rem;
   flex-shrink: 0;
 }
 .nav-icon-btn {
   background: none;
   border: none;
-  padding: 0.5rem;
+  padding: 0.45rem;
   color: var(--medium);
   transition: var(--transition);
-  position: relative;
   display: flex;
   align-items: center;
+  position: relative;
 }
 .nav-icon-btn:hover { color: var(--charcoal); }
-.cart-btn { position: relative; }
 .cart-badge {
   position: absolute;
-  top: 0; right: 0;
+  top: 1px; right: 1px;
   background: var(--gold);
   color: var(--charcoal);
-  font-size: 0.6rem;
-  font-weight: 600;
-  width: 16px; height: 16px;
+  font-size: 0.55rem;
+  font-weight: 700;
+  width: 15px; height: 15px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  pointer-events: none;
 }
-.nav-cta { padding: 0.6rem 1.4rem; font-size: 0.7rem; }
+.nav-cta {
+  padding: 0.55rem 1.3rem;
+  font-size: 0.68rem;
+  margin-left: 0.25rem;
+}
+
+/* ─── USER DROPDOWN ─── */
 .user-menu { position: relative; }
 .user-dropdown {
   position: absolute;
-  top: calc(100% + 1rem);
+  top: calc(100% + 0.75rem);
   right: 0;
   background: var(--warm-white);
   border: 1px solid var(--border);
-  min-width: 180px;
-  padding: 0.5rem 0;
+  min-width: 175px;
+  padding: 0.4rem 0;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-10px);
-  transition: all 0.3s ease;
+  transform: translateY(-8px);
+  transition: all 0.25s ease;
   box-shadow: var(--shadow);
+  z-index: 1050;
 }
-.user-menu:hover .user-dropdown {
+.user-menu:hover .user-dropdown,
+.user-menu:focus-within .user-dropdown {
   opacity: 1; visibility: visible; transform: translateY(0);
 }
 .user-dropdown .user-name {
   display: block;
-  padding: 0.75rem 1.25rem;
-  font-size: 0.8rem;
+  padding: 0.65rem 1.1rem;
+  font-size: 0.78rem;
   font-weight: 500;
   color: var(--charcoal);
   border-bottom: 1px solid var(--border);
 }
-.user-dropdown a, .user-dropdown button {
+.user-dropdown a,
+.user-dropdown button {
   display: block;
   width: 100%;
-  padding: 0.65rem 1.25rem;
-  font-size: 0.8rem;
+  padding: 0.6rem 1.1rem;
+  font-size: 0.78rem;
   color: var(--text-body);
   background: none;
   border: none;
   text-align: left;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   transition: var(--transition);
+  cursor: pointer;
+  font-family: var(--font-body);
 }
-.user-dropdown a:hover, .user-dropdown button:hover {
+.user-dropdown a:hover,
+.user-dropdown button:hover {
   background: var(--cream);
   color: var(--charcoal);
-  padding-left: 1.75rem;
+  padding-left: 1.5rem;
 }
-.nav-toggle { display: none; background: none; border: none; color: var(--charcoal); }
+
+/* ─── HAMBURGER (hidden desktop) ─── */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--charcoal);
+  padding: 0.4rem;
+  cursor: pointer;
+  z-index: 1002;
+  flex-shrink: 0;
+}
+
+/* ─── SEARCH BAR ─── */
 .search-bar {
-  padding: 1rem 2rem;
+  padding: 0.85rem 2rem;
   border-top: 1px solid var(--border);
   background: rgba(250,248,244,0.98);
+  backdrop-filter: blur(20px);
 }
 .search-bar form {
   display: flex;
   align-items: center;
-  max-width: 600px;
+  max-width: 560px;
   margin: 0 auto;
   gap: 0.5rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.25rem;
 }
 .search-bar input {
   flex: 1;
   border: none;
-  border-bottom: 1px solid var(--border);
   background: transparent;
-  padding: 0.5rem 0.5rem;
-  font-size: 1rem;
+  padding: 0.4rem 0.25rem;
+  font-size: 0.95rem;
   color: var(--charcoal);
   outline: none;
+  font-family: var(--font-body);
 }
-.search-bar button { background: none; border: none; color: var(--text-light); padding: 0.5rem; }
+.search-bar input::placeholder { color: var(--text-light); }
+.search-bar button { background: none; border: none; color: var(--text-light); padding: 0.35rem; cursor: pointer; }
 .search-bar button:hover { color: var(--charcoal); }
+
+/* ─── OVERLAY ─── */
 .nav-overlay {
   position: fixed; inset: 0;
-  background: rgba(26,18,8,0.4);
+  background: rgba(26,18,8,0.45);
   z-index: 999;
+  backdrop-filter: blur(2px);
 }
 
-@media (max-width: 1024px) {
+/* ─── TABLET (1024px) ─── */
+@media (max-width: 1100px) {
+  .nav-links a { padding: 0.45rem 0.7rem; font-size: 0.7rem; }
+  .navbar-inner { padding: 1.1rem 1.5rem; gap: 1rem; }
+}
+
+/* ─── MOBILE/TABLET DRAWER (< 900px) ─── */
+@media (max-width: 900px) {
   .nav-toggle { display: flex; }
+  .nav-cta { display: none; }
+
+  /* Drawer */
   .nav-links {
     position: fixed;
-    top: 0; left: -100%; bottom: 0;
-    width: 280px;
+    top: 0;
+    left: -100%;
+    bottom: 0;
+    width: min(300px, 85vw);
     background: var(--warm-white);
     flex-direction: column;
-    padding: 5rem 2rem 2rem;
+    justify-content: flex-start;
+    padding: 5rem 0 2rem;
     gap: 0;
-    transition: left 0.4s ease;
+    transition: left 0.35s cubic-bezier(0.4,0,0.2,1);
     z-index: 1001;
-    box-shadow: var(--shadow-lg);
+    box-shadow: 8px 0 40px rgba(26,18,8,0.15);
     overflow-y: auto;
   }
   .nav-links.open { left: 0; }
-  .nav-links a { padding: 1rem 0; border-bottom: 1px solid var(--border); }
+
+  .nav-links li { border-bottom: 1px solid var(--border); }
+  .nav-links a {
+    padding: 1rem 1.75rem;
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    display: flex;
+    align-items: center;
+  }
   .nav-links a::after { display: none; }
-  .nav-cta { display: none; }
+  .nav-links a.active {
+    color: var(--gold);
+    background: var(--cream);
+    border-left: 3px solid var(--gold);
+    padding-left: calc(1.75rem - 3px);
+  }
 }
+
+/* ─── SMALL MOBILE ─── */
 @media (max-width: 480px) {
-  .navbar-inner { padding: 1rem; }
+  .navbar-inner { padding: 0.9rem 1rem; }
+  .logo-main { font-size: 1.35rem; }
+  .search-bar { padding: 0.75rem 1rem; }
 }
-.logo-img { height: 40px; width: auto; object-fit: contain; }

@@ -1,21 +1,19 @@
-.profile-page { padding-top: 80px; padding-bottom: 5rem; }
-.profile-layout { display: grid; grid-template-columns: 240px 1fr; gap: 4rem; margin-top: 3rem; }
-.profile-sidebar { text-align: center; }
-.profile-avatar { width: 80px; height: 80px; border-radius: 50%; background: var(--charcoal); color: var(--cream); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 2rem; margin: 0 auto 1rem; }
-.profile-sidebar h3 { font-family: var(--font-display); font-size: 1.2rem; }
-.profile-sidebar p { font-size: 0.85rem; color: var(--text-light); margin-bottom: 1.5rem; }
-.profile-nav { display: flex; flex-direction: column; gap: 0; border-top: 1px solid var(--border); }
-.profile-nav a, .profile-nav button { display: block; width: 100%; padding: 0.85rem 1rem; font-family: var(--font-body); font-size: 0.85rem; color: var(--text-body); border: none; background: none; text-align: left; border-bottom: 1px solid var(--border); cursor: pointer; transition: var(--transition); letter-spacing: 0.05em; }
-.profile-nav a:hover, .profile-nav button:hover { color: var(--gold); padding-left: 1.5rem; }
-.profile-main h2 { font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 1.5rem; }
-.orders-list { display: flex; flex-direction: column; gap: 1rem; }
-.order-card { background: var(--cream); border: 1px solid var(--border); padding: 1.25rem; }
-.order-card div { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem; }
-.order-card strong { font-family: var(--font-display); font-size: 1rem; }
-.order-status { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.2rem 0.6rem; }
-.status-placed { background: #fff3cd; color: #856404; }
-.status-confirmed { background: #d1ecf1; color: #0c5460; }
-.status-delivered { background: #d4edda; color: #155724; }
-.status-cancelled { background: #f8d7da; color: #721c24; }
-.order-card p { font-size: 0.875rem; color: var(--text-body); }
+.profile-page { padding-top:80px; padding-bottom:5rem; }
+.profile-layout { display:grid; grid-template-columns:220px 1fr; gap:3.5rem; margin-top:2.5rem; }
+.profile-sidebar { text-align:center; }
+.profile-avatar { width:76px; height:76px; border-radius:50%; background:var(--charcoal); color:var(--cream); display:flex; align-items:center; justify-content:center; font-family:var(--font-display); font-size:1.85rem; margin:0 auto 0.85rem; }
+.profile-sidebar h3 { font-family:var(--font-display); font-size:1.1rem; }
+.profile-sidebar p { font-size:0.83rem; color:var(--text-light); margin-bottom:1.35rem; }
+.profile-nav { display:flex; flex-direction:column; gap:0; border-top:1px solid var(--border); }
+.profile-nav a,.profile-nav button { display:block; width:100%; padding:0.8rem 1rem; font-family:var(--font-body); font-size:0.83rem; color:var(--text-body); border:none; background:none; text-align:left; border-bottom:1px solid var(--border); cursor:pointer; transition:var(--transition); letter-spacing:0.04em; }
+.profile-nav a:hover,.profile-nav button:hover { color:var(--gold); padding-left:1.4rem; }
+.profile-main h2 { font-family:var(--font-display); font-size:1.4rem; margin-bottom:1.35rem; }
+.orders-list { display:flex; flex-direction:column; gap:0.85rem; }
+.order-card { background:var(--cream); border:1px solid var(--border); padding:1.1rem; }
+.order-card div { display:flex; align-items:center; gap:0.85rem; margin-bottom:0.45rem; flex-wrap:wrap; }
+.order-card strong { font-family:var(--font-display); font-size:0.95rem; }
+.order-status { font-size:0.68rem; letter-spacing:0.12em; text-transform:uppercase; padding:0.18rem 0.55rem; }
+.status-placed{background:#fff3cd;color:#856404} .status-confirmed{background:#d1ecf1;color:#0c5460}
+.status-delivered{background:#d4edda;color:#155724} .status-cancelled{background:#f8d7da;color:#721c24}
+.order-card p { font-size:0.84rem; color:var(--text-body); }
 @media(max-width:768px){ .profile-layout{grid-template-columns:1fr} }
