@@ -1,98 +1,117 @@
-# Luxe Interior Studio — Complete MERN Stack Website
+# Luxe Interior Studio — Full MERN Stack Website
 
 ## 🚀 Quick Start
 
 ```bash
 # 1. Backend
 cd server
-cp .env.example .env      # set MONGO_URI + JWT_SECRET
+cp .env.example .env       # Fill in Mongo + Cloudinary credentials
 npm install
-npm run seed              # creates admin@luxe.in / Admin@1234
-npm run dev               # → http://localhost:5000
+npm run seed               # Creates admin@luxe.in / Admin@1234
+npm run dev                # → http://localhost:5000
 
-# 2. Frontend (new terminal)
+# 2. Frontend
 cd client
 npm install
-npm start                 # → http://localhost:3000
+npm start                  # → http://localhost:3000
 ```
+
+---
+
+## ☁️ Cloudinary Setup (Required for image uploads)
+
+1. Sign up free at **https://cloudinary.com** (25GB free storage)
+2. Go to **Dashboard** → copy your 3 credentials
+3. Paste into `server/.env`:
+
+```env
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
+```
+
+### Cloudinary Folder Structure
+All uploads are auto-organised into separate folders:
+
+| Folder | Used For | Max Size |
+|--------|----------|----------|
+| `interior-studio/products/` | Product images (jpg,png,webp,gif) | 20MB each |
+| `interior-studio/projects/` | Project images, MP4 videos, GIFs | 100MB each |
+| `interior-studio/services/` | Service images | 10MB |
+| `interior-studio/blog/` | Blog cover images | 10MB |
+| `interior-studio/categories/` | Category images | 10MB |
+| `interior-studio/users/` | User avatars | 5MB |
+| `interior-studio/reviews/` | Review photos (up to 3) | 10MB each |
+| `interior-studio/settings/` | Logo, hero bg, team photos, OG image | 10MB |
+
+Auto image optimisation: `quality: auto`, `fetch_format: auto` (WebP served to supporting browsers).
 
 ---
 
 ## 🔐 Login Credentials
 
-| Role  | URL | Email | Password |
-|-------|-----|-------|----------|
+| Role | URL | Email | Password |
+|------|-----|-------|----------|
 | Admin | `/admin` | `admin@luxe.in` | `Admin@1234` |
-| User  | `/login` | register at `/register` | — |
+| User | `/register` | register new | — |
 
 ---
 
-## 🗺 Admin Panel URLs
+## 🗺 Admin Panel
 
-| Page | URL |
-|------|-----|
-| Admin Login | `/admin` |
-| Dashboard | `/admin/dashboard` |
-| **Site Settings** | `/admin/settings` |
-| Products | `/admin/products` |
-| Categories | `/admin/categories` |
-| **Services** | `/admin/services` |
-| Orders | `/admin/orders` |
-| Projects | `/admin/projects` |
-| Blog | `/admin/blog` |
-| Customers | `/admin/users` |
-| Consultations | `/admin/consultations` |
-| Reviews | `/admin/reviews` |
+| Page | URL | Cloudinary |
+|------|-----|-----------|
+| Dashboard | `/admin/dashboard` | — |
+| **Products** | `/admin/products` | ✅ Multi-image upload → `/products/` |
+| Categories | `/admin/categories` | ✅ Image upload → `/categories/` |
+| Orders | `/admin/orders` | — |
+| **Projects** | `/admin/projects` | ✅ Images + Videos/GIFs → `/projects/` |
+| **Services** | `/admin/services` | ✅ Image upload → `/services/` |
+| **Blog** | `/admin/blog` | ✅ Cover image → `/blog/` |
+| Customers | `/admin/users` | — |
+| Consultations | `/admin/consultations` | — |
+| Reviews | `/admin/reviews` | ✅ (uploaded on frontend) |
+| **Site Settings** | `/admin/settings` | ✅ Logo, hero, team, OG → `/settings/` |
 
----
-
-## ⚙️ Site Settings (Admin → Settings)
-
-All managed from Admin → Site Settings:
-
-| Tab | Controls |
-|-----|----------|
-| 🏷️ Logo & Branding | Upload logo image OR set text logo, sub-text, tagline |
-| 🎨 Theme & Colors | Primary/dark/light/accent color pickers + font names |
-| 📍 Contact Info | Address, 2 phones, 2 emails, hours, WhatsApp, Google Maps embed |
-| 🔗 Social Media | Instagram, Facebook, LinkedIn, YouTube, Twitter, Pinterest |
-| 📄 Footer | About text, copyright line, newsletter toggle |
-| 🖼️ Hero Section | Title, description, background image, CTA buttons |
-| 👥 About Page | Hero image, intro, mission, stats (repeatable), team (repeatable + photo upload) |
-| 🔍 SEO | Meta title, description, keywords, OG image |
-
-**All changes apply immediately to the live site.**
+### Upload DELETE
+When you remove an image in any admin form, it is also deleted from Cloudinary automatically.
 
 ---
 
-## 🛠 Services CRUD (Admin → Services)
+## 📸 All Upload Points
 
-- Add/edit/delete services with name, icon, short & full description
-- Upload service image
-- Add features (one per line)
-- Add process steps (step number + title + description)
-- Add pricing tiers (label + price + description)
-- Set sort order & homepage visibility
+### Admin Panel
+- **Products**: multiple images (jpg/png/webp/gif), stored in `/products/`
+- **Projects**: multiple images + MP4/WebM/GIF videos + YouTube/Vimeo URL embeds
+- **Services**: single cover image per service
+- **Blog Posts**: cover image per post
+- **Categories**: single image per category
+- **Site Settings** (8 tabs):
+  - Logo image upload
+  - Hero background image
+  - About page hero image
+  - Team member photos (per member)
+  - OG/SEO image
 
----
+### Frontend (public)
+- **User Avatar**: uploadable from Profile page → stored in `/users/`
+- **Review Photos**: up to 3 photos per review → stored in `/reviews/`
 
-## 📋 Contact Page
-
-Contact page automatically displays:
-- Address, phone, email, hours — from Settings → Contact Info
-- WhatsApp chat button — if WhatsApp number is set
-- Google Maps iframe — if map URL is set
-- Consultation booking form — saves to DB, visible in Admin → Consultations
-
----
-
-## 🖼️ Dynamic Navbar & Footer
-
-Both Navbar and Footer pull all content from Settings:
-- Logo (image or text)
-- Contact info in footer
-- Social media icons in footer
-- Copyright text
+### API Endpoints
+```
+POST /api/upload/image          → /general/    (generic fallback)
+POST /api/upload/video          → /general/
+POST /api/upload/multiple       → /general/
+POST /api/upload/products       → /products/   (multiple)
+POST /api/upload/projects       → /projects/   (multiple, up to 20)
+POST /api/upload/services       → /services/   (single)
+POST /api/upload/blog           → /blog/       (multiple)
+POST /api/upload/categories     → /categories/ (single)
+POST /api/upload/avatar         → /users/      (single, auth required)
+POST /api/upload/reviews        → /reviews/    (multiple, up to 3)
+POST /api/upload/settings       → /settings/   (single)
+DELETE /api/upload/delete       → deletes by URL (admin only)
+```
 
 ---
 
@@ -101,33 +120,12 @@ Both Navbar and Footer pull all content from Settings:
 | Layer | Tech |
 |-------|------|
 | Frontend | React 18, React Router 6, Framer Motion |
-| State | Context API: Auth + Cart + **Settings** |
-| Styling | Pure CSS + CSS Variables |
+| State | Context API: Auth + Cart + Settings |
+| Styling | Pure CSS + CSS Variables, fully responsive |
 | Backend | Node.js + Express |
 | Database | MongoDB + Mongoose |
 | Auth | JWT (30d) |
-| Uploads | Multer — images, videos, GIFs (100MB) |
+| **Image Storage** | **Cloudinary** (all uploads) |
+| Upload Middleware | multer + multer-storage-cloudinary |
 | Notifications | React Hot Toast |
 
----
-
-## 🗄️ Models
-
-User, Product, Category, Project, Service, Blog, Order, Review, Consultation, **Settings**
-
-## 📡 API Routes
-
-```
-/api/auth         — register, login, me
-/api/products     — CRUD + search/filter/sort/paginate
-/api/categories   — CRUD
-/api/services     — CRUD
-/api/projects     — CRUD + video/GIF support
-/api/blog         — CRUD + publish
-/api/orders       — create, my orders, admin all, status update
-/api/reviews      — create, approve, delete
-/api/consultations — create, admin list+update
-/api/upload       — image, video, multiple (multer)
-/api/admin        — stats, users list, role toggle
-/api/settings     — GET all, GET by key, PUT by key (admin)
-```

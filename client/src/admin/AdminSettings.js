@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSettings } from '../context/SettingsContext';
-import { uploadImage } from '../utils/api';
+import { uploadSettingsAsset } from '../utils/api';
 import toast from 'react-hot-toast';
 import './AdminSettings.css';
 
@@ -40,26 +40,33 @@ const AdminSettings = () => {
 
   const set = e => setForm(p => ({ ...p, [e.target.name]: e.target.type === 'checkbox' ? e.target.checked : e.target.value }));
 
+  const uploadSettingsFile = async file => {
+    const res = await uploadSettingsAsset(file);
+    return res.data.url;
+  };
+
   const handleLogoUpload = async e => {
     const file = e.target.files[0];
     if (!file) return;
-    const fd = new FormData(); fd.append('file', file);
     try {
-      const r = await uploadImage(fd);
-      setForm(p => ({ ...p, logo: r.data.url }));
+      const url = await uploadSettingsFile(file);
+      setForm(p => ({ ...p, logo: url }));
       toast.success('Logo uploaded');
-    } catch { toast.error('Upload failed'); }
+    } catch (err) {
+      toast.error(err.response?.data?.message || 'Upload failed');
+    }
   };
 
   const handleImageUpload = async (e, field) => {
     const file = e.target.files[0];
     if (!file) return;
-    const fd = new FormData(); fd.append('file', file);
     try {
-      const r = await uploadImage(fd);
-      setForm(p => ({ ...p, [field]: r.data.url }));
+      const url = await uploadSettingsFile(file);
+      setForm(p => ({ ...p, [field]: url }));
       toast.success('Image uploaded');
-    } catch { toast.error('Upload failed'); }
+    } catch (err) {
+      toast.error(err.response?.data?.message || 'Upload failed');
+    }
   };
 
   const handleStatChange = (i, key, val) => {
@@ -296,8 +303,12 @@ const AdminSettings = () => {
                         📷
                         <input type="file" accept="image/*" onChange={async e => {
                           const file = e.target.files[0]; if (!file) return;
-                          const fd = new FormData(); fd.append('file', file);
-                          try { const r = await uploadImage(fd); handleTeamChange(i, 'image', r.data.url); } catch {}
+                          try {
+                            const url = await uploadSettingsFile(file);
+                            handleTeamChange(i, 'image', url);
+                          } catch (err) {
+                            toast.error(err.response?.data?.message || 'Upload failed');
+                          }
                         }} style={{display:'none'}} />
                       </label>
                     </div>
